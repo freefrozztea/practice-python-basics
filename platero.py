@@ -2,24 +2,6 @@
 # Tener en cuenta que los carácteres de la subcadena no necesariamente deben estar en forma consecutiva dentro de la cadena, pero sí
 # respetando el orden de los mismos
 
-# Mi pseudocódigo:
-# defino funcion recibiendo como parámetros la cadena y la subcadena
-#     Las convierto en minúsculas a ambas
-#     Creo variable respuesta en 0
-#     Luego busco el primer caracter - ver si uso find o alguna otra
-#         Si está:
-#             Busco el segundo viendo que el tercero o el cuarto no aparezcan antes
-#                 Si es correcto:
-#                     Busco el tercero viendo que el cuarto no aparezca antes
-#                         Si es correcto:
-#                             actualizo contador y renuevo la búsqueda desde el primero
-#                         Si no es correcto:
-#                             corto ciclo
-#                 si no es correcto:
-#                     corto ciclo
-
-#     retorno respuesta
-
 
 def busquedaLista(lista1, lista2):
 
@@ -52,13 +34,14 @@ def cantidadSubcadena(cadena, subcadena):
     listaCadena, listaSubcadena = list(cadena.lower()), list(subcadena.lower())
     respuesta = 0
 
-    while len(listaCadena) > 0:
-        if len(listaSubcadena) == 0:
+    while True:
+        if len(listaSubcadena) == 0 or len(listaCadena) == 0:
             break
         pos = busquedaLista(lista1=listaCadena, lista2=listaSubcadena)
-        if pos != -1:
-            listaCadena = listaCadena[pos + 1 : :]
-            respuesta = respuesta + 1
+        if pos == -1:
+            break
+        listaCadena = listaCadena[pos + 1 : :]
+        respuesta = respuesta + 1
 
     return respuesta
 
